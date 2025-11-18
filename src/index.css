@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Righteous&family=Bungee&display=swap');
+
+/* Text Reveal Animation - Gradient moving through text */
+@keyframes text-reveal {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Typewriter cursor blink animation */
+@keyframes blink-caret {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Typewriter wrapper - apply gradient to text only */
+.typewriter-wrapper .Typewriter__wrapper {
+  background-image: linear-gradient(90deg, #a78bfa 0%, #c084fc 20%, #e879f9 40%, #f472b6 60%, #fb7185 80%, #a78bfa 100%);
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  background-position: 0% center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #a78bfa;
+  /*animation: text-reveal 4s linear infinite;*/
+  display: inline-block;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hide typewriter's default cursor */
+.Typewriter__cursor {
+  display: none !important;
+}
+
+/* =====================================================
+   CSS VARIABLES - Primary Colors (Purple Theme)
+   Chỉnh sửa các giá trị này để thay đổi theme màu
+   ===================================================== */
+:root {
+  /* Primary Colors */
+  --color-primary: 109 62 217; 
+  --color-primary-300: 196 181 253; /* purple-300 */
+  --color-primary-400: 167 139 250; /* purple-400 */
+  --color-primary-500: 139 92 246; /* purple-500 */
+  --color-primary-600: 71 44 165; /* purple-600 */
+  --color-primary-700: 109 40 217; /* purple-700 */
+  --color-primary-900: 88 28 135; /* purple-900 */
+  
+  /* Hover States */
+  --color-primary-hover: 124 58 237; /* purple-600 */
+  --color-primary-hover-light: 167 139 250; /* purple-400 */
+  --color-primary-hover-dark: 109 40 217; /* purple-700 */
+  
+  /* Focus/Ring States */
+  --color-primary-focus: 139 92 246; /* purple-500 */
+  --color-primary-ring: 139 92 246; /* purple-500 */
+  
+  /* Background Variants */
+  --color-primary-bg: 124 58 237; /* purple-600 */
+  --color-primary-bg-hover: 109 40 217; /* purple-700 */
+  --color-primary-bg-light: 196 181 253; /* purple-300 */
+  --color-primary-bg-dark: 88 28 135; /* purple-900 */
+  
+  /* Text Variants */
+  --color-primary-text: 167 139 250; /* purple-400 */
+  --color-primary-text-hover: 196 181 253; /* purple-300 */
+  --color-primary-text-light: 196 181 253; /* purple-300 */
+  
+  /* Border Variants */
+  --color-primary-border: 139 92 246; /* purple-500 */
+  --color-primary-border-hover: 124 58 237; /* purple-600 */
+
+  --background: 224 71% 4%;
+  --foreground: 213 31% 91%;
+}
+
+body {
+  background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  margin: 0;
+  line-height: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =====================================================
+   UTILITY CLASSES - Primary Color Classes
+   Sử dụng các class này thay vì Tailwind purple classes
+   ===================================================== */
+
+/* Background Colors */
+.bg-primary { background-color: rgb(var(--color-primary-bg)); }
+.bg-primary-hover:hover { background-color: rgb(var(--color-primary-bg-hover)); }
+.bg-primary-light { background-color: rgb(var(--color-primary-bg-light)); }
+.bg-primary-dark { background-color: rgb(var(--color-primary-bg-dark)); }
+.bg-primary-600 { background-color: rgb(var(--color-primary-600)); }
+.bg-primary-700 { background-color: rgb(var(--color-primary-700)); }
+
+/* Text Colors */
+.text-primary { color: rgb(var(--color-primary-text)); }
+.text-primary-hover:hover { color: rgb(var(--color-primary-text-hover)); }
+.text-primary-light { color: rgb(var(--color-primary-text-light)); }
+.text-primary-300 { color: rgb(var(--color-primary-300)); }
+.text-primary-400 { color: rgb(var(--color-primary-400)); }
+
+/* Border Colors */
+.border-primary { border-color: rgb(var(--color-primary-border)); }
+.border-primary-hover:hover { border-color: rgb(var(--color-primary-border-hover)); }
+.border-primary-500 { border-color: rgb(var(--color-primary-500)); }
+.border-primary-600 { border-color: rgb(var(--color-primary-600)); }
+
+/* Ring Colors (for focus states) */
+.ring-primary { --tw-ring-color: rgb(var(--color-primary-ring)); }
+.focus-ring-primary:focus { --tw-ring-color: rgb(var(--color-primary-focus)); }
+
+/* Hover Text */
+.hover-text-primary:hover { color: rgb(var(--color-primary-hover-light)); }
+.hover-text-primary-400:hover { color: rgb(var(--color-primary-400)); }
+.hover-text-primary-300:hover { color: rgb(var(--color-primary-300)); }
+
+/* Hover Background */
+.hover-bg-primary:hover { background-color: rgb(var(--color-primary-hover)); }
+.hover-bg-primary-700:hover { background-color: rgb(var(--color-primary-700)); }
+
+/* Combined Classes for Common Use Cases */
+.btn-primary {
+  background-color: rgb(var(--color-primary-bg));
+  color: white;
+}
+.btn-primary:hover {
+  background-color: rgb(var(--color-primary-bg-hover));
+}
+
+.link-primary {
+  color: rgb(var(--color-primary-text));
+}
+.link-primary:hover {
+  color: rgb(var(--color-primary-text-hover));
+}
+
+.badge-primary {
+  background-color: rgb(var(--color-primary-600));
+  color: white;
+}
+
+.card-hover-primary:hover {
+  border-color: rgb(var(--color-primary-border));
+}
+.bg-background {
+  background-color: hsl(var(--background));
+}
+/* Article Content Prose Styling */
+.article-content {
+  @apply text-gray-300 leading-relaxed;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  @apply text-white font-bold mt-8 mb-4;
+}
+
+.article-content h1 { @apply text-4xl; }
+.article-content h2 { @apply text-3xl; }
+.article-content h3 { @apply text-2xl; }
+.article-content h4 { @apply text-xl; }
+
+.article-content p {
+  @apply mb-4 text-base;
+}
+
+.article-content a {
+  color: rgb(var(--color-primary-400));
+  text-decoration: underline;
+}
+.article-content a:hover {
+  color: rgb(var(--color-primary-300));
+}
+
+.article-content ul,
+.article-content ol {
+  @apply mb-4 ml-6;
+}
+
+.article-content ul {
+  @apply list-disc;
+}
+
+.article-content ol {
+  @apply list-decimal;
+}
+
+.article-content li {
+  @apply mb-2;
+}
+
+.article-content blockquote {
+  border-left: 4px solid rgb(var(--color-primary-500));
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: rgb(156 163 175);
+}
+
+.article-content code {
+  background-color: rgb(31 41 55);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: rgb(var(--color-primary-300));
+}
+
+.article-content pre {
+  background-color: rgb(17 24 39);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.article-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.article-content img {
+  @apply rounded-lg my-6 w-full;
+}
+
+.article-content table {
+  @apply w-full border-collapse mb-4;
+}
+
+.article-content th,
+.article-content td {
+  @apply border border-gray-700 px-4 py-2;
+}
+
+.article-content th {
+  @apply bg-gray-800 font-bold;
+}
+
+.article-content strong {
+  @apply font-bold text-white;
+}
+
+.article-content em {
+  @apply italic;
+}
+
+.article-content hr {
+  @apply border-gray-700 my-8;
+}
+
