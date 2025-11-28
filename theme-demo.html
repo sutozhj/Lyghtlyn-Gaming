@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Ocean Refined Theme - Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Deep Ocean Colors */
+      --primary: #2563EB;
+      --primary-hover: #3B82F6;
+      --primary-dark: #1E40AF;
+      --background: #0A0F1E;
+      --surface: #1E293B;
+      --border: #334155;
+      --text: #E2E8F0;
+      --text-muted: #94A3B8;
+      
+      /* Subtle Effects */
+      --glow-subtle: 0 0 8px rgba(37, 99, 235, 0.15);
+      --glow-hover: 0 0 12px rgba(59, 130, 246, 0.25);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Header Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      gap: 2rem;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-hover);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Animated background for nav */
+    .nav-bg {
+      position: absolute;
+      height: 36px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 8px;
+      transition: all 0.3s ease-out;
+      pointer-events: none;
+      opacity: 0;
+      box-shadow: var(--glow-subtle);
+    }
+
+    .nav-item {
+      padding: 0.5rem 1rem;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 10;
+      border: 1px solid transparent;
+    }
+
+    .nav-item:hover {
+      color: var(--primary-hover);
+    }
+
+    /* Sidebar */
+    aside {
+      position: fixed;
+      left: 0;
+      top: 64px;
+      width: 80px;
+      height: calc(100vh - 64px);
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(8px);
+      border-right: 1px solid var(--border);
+      padding: 1rem 0.5rem;
+      transition: width 0.3s;
+      overflow: hidden;
+    }
+
+    aside:hover {
+      width: 240px;
+    }
+
+    .sidebar-title {
+      padding: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-text {
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    aside:hover .sidebar-text {
+      opacity: 1;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0.75rem 0;
+    }
+
+    .sidebar-games {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+      padding: 0.5rem;
+    }
+
+    /* Animated background for sidebar */
+    .sidebar-bg {
+      position: absolute;
+      left: 0.5rem;
+      width: calc(100% - 1rem);
+      height: 48px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 8px;
+      transition: all 0.3s ease-out;
+      pointer-events: none;
+      opacity: 0;
+      box-shadow: var(--glow-hover);
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+      position: relative;
+      z-index: 10;
+      border: 1px solid transparent;
+    }
+
+    .game-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .game-name {
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      font-size: 0.9rem;
+    }
+
+    aside:hover .game-name {
+      opacity: 1;
+    }
+
+    /* Main Content */
+    main {
+      margin-left: 80px;
+      margin-top: 64px;
+      padding: 2rem;
+    }
+
+    .demo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .demo-card h2 {
+      color: var(--primary-hover);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .demo-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .color-box {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .color-sample {
+      width: 100%;
+      height: 60px;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .color-name {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--primary-hover);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: var(--glow-hover);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header>
+    <div class="logo">Lyghtlyn Gaming</div>
+    <nav class="nav-menu" id="navMenu">
+      <div class="nav-bg" id="navBg"></div>
+      <a href="#" class="nav-item">Games</a>
+      <a href="#" class="nav-item">Tin Tức</a>
+      <a href="#" class="nav-item">Reviews</a>
+      <a href="#" class="nav-item">Guides</a>
+      <a href="#" class="nav-item">ESports</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <aside>
+    <div class="sidebar-title">
+      <div class="sidebar-icon"></div>
+      <span class="sidebar-text">All Games</span>
+    </div>
+    <div class="divider"></div>
+    <div class="sidebar-games" id="sidebarGames">
+      <div class="sidebar-bg" id="sidebarBg"></div>
+      <a href="#" class="sidebar-item">
+        <div class="game-icon">DF</div>
+        <span class="game-name">Delta Force</span>
+      </a>
+      <a href="#" class="sidebar-item">
+        <div class="game-icon">POE</div>
+        <span class="game-name">Path of Exile</span>
+      </a>
+      <a href="#" class="sidebar-item">
+        <div class="game-icon">D4</div>
+        <span class="game-name">Diablo 4</span>
+      </a>
+      <a href="#" class="sidebar-item">
+        <div class="game-icon">LOL</div>
+        <span class="game-name">League of Legends</span>
+      </a>
+      <a href="#" class="sidebar-item">
+        <div class="game-icon">CS</div>
+        <span class="game-name">Counter Strike 2</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <div class="demo-card">
+      <h2>🌊 Deep Ocean Refined Theme</h2>
+      <p>Theme xanh navy chuyên nghiệp với glow effect rất subtle và border mỏng 1px.</p>
+      <p><strong>Đặc điểm:</strong></p>
+      <ul style="color: var(--text-muted); line-height: 1.8; padding-left: 1.5rem;">
+        <li>Glow effect rất nhẹ (opacity 0.15-0.25)</li>
+        <li>Border mỏng 1px tinh tế</li>
+        <li>Hover animation mượt mà</li>
+        <li>Màu xanh dương clean, dễ đọc</li>
+      </ul>
+      <br>
+      <button class="btn-primary">Test Button Hover</button>
+    </div>
+
+    <div class="demo-card">
+      <h2>🎨 Color Palette</h2>
+      <div class="color-grid">
+        <div class="color-box">
+          <div class="color-sample" style="background: #2563EB;"></div>
+          <div class="color-name">Primary</div>
+        </div>
+        <div class="color-box">
+          <div class="color-sample" style="background: #3B82F6;"></div>
+          <div class="color-name">Primary Hover</div>
+        </div>
+        <div class="color-box">
+          <div class="color-sample" style="background: #0A0F1E;"></div>
+          <div class="color-name">Background</div>
+        </div>
+        <div class="color-box">
+          <div class="color-sample" style="background: #1E293B;"></div>
+          <div class="color-name">Surface</div>
+        </div>
+        <div class="color-box">
+          <div class="color-sample" style="background: #334155;"></div>
+          <div class="color-name">Border</div>
+        </div>
+        <div class="color-box">
+          <div class="color-sample" style="background: #E2E8F0;"></div>
+          <div class="color-name">Text</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <h2>💡 Hướng dẫn test</h2>
+      <p>1. <strong>Hover vào menu trên</strong> - Xem animated background trượt ngang</p>
+      <p>2. <strong>Hover vào sidebar trái</strong> - Xem animated background trượt dọc</p>
+      <p>3. <strong>Hover vào button</strong> - Xem subtle glow effect</p>
+      <p>4. <strong>Để ý border mỏng</strong> - Tất cả chỉ 1px, không to</p>
+    </div>
+  </main>
+
+  <script>
+    // Navigation hover effect
+    const navMenu = document.getElementById('navMenu');
+    const navBg = document.getElementById('navBg');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    navItems.forEach(item => {
+      item.addEventListener('mouseenter', (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const parentRect = navMenu.getBoundingClientRect();
+        
+        navBg.style.left = `${rect.left - parentRect.left}px`;
+        navBg.style.width = `${rect.width}px`;
+        navBg.style.opacity = '1';
+      });
+    });
+
+    navMenu.addEventListener('mouseleave', () => {
+      navBg.style.opacity = '0';
+    });
+
+    // Sidebar hover effect
+    const sidebarGames = document.getElementById('sidebarGames');
+    const sidebarBg = document.getElementById('sidebarBg');
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+
+    sidebarItems.forEach(item => {
+      item.addEventListener('mouseenter', (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const containerRect = sidebarGames.getBoundingClientRect();
+        
+        sidebarBg.style.top = `${rect.top - containerRect.top}px`;
+        sidebarBg.style.height = `${rect.height}px`;
+        sidebarBg.style.opacity = '1';
+      });
+    });
+
+    sidebarGames.addEventListener('mouseleave', () => {
+      sidebarBg.style.opacity = '0';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/* =====================================================
+   ANIMATED HOVER BACKGROUNDS
+   Reusable classes for smooth animated hover effects
+   ===================================================== */
+
+/* Base animated background */
+.animated-hover-bg {
+    position: absolute;
+    background: rgba(37, 99, 235, 0.15);
+    /* primary-700/15 */
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    /* primary-500/25 */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    transition: all 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0 0 12px rgba(37, 99, 235, 0.2);
+    opacity: 0;
+}
+
+/* Horizontal hover (for top navigation) */
+.animated-hover-bg-horizontal {
+    height: 2.25rem;
+    /* h-9 */
+}
+
+/* Vertical hover (for sidebar) */
+.animated-hover-bg-vertical {
+    width: 100%;
+}
